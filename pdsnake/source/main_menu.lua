@@ -16,7 +16,7 @@ function updateMainMenu()
 	updates += 1
 
 	if playdate.buttonIsPressed(playdate.kButtonA) then
-		sfxSelect:play()
+		sfx.play(sfx.select)
 		switchScene("gameplay")
 	end
 

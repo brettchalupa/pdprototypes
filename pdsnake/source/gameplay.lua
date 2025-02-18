@@ -32,7 +32,7 @@ function updateGameplay()
 
 	if isGameOver then
 		if playdate.buttonJustPressed(playdate.kButtonA) then
-			sfxSelect:play()
+			sfx.play(sfx.select)
 			resetGame()
 		end
 	else
@@ -169,7 +169,7 @@ function moveSnake()
 end
 
 function eatApple()
-	sfxApple:play()
+	sfx.play(sfx.apple)
 	table.insert(snake.parts, { gridX = snake.gridX, gridY = snake.gridY })
 	spawnApple()
 end
@@ -185,7 +185,7 @@ end
 
 function endGame()
 	isGameOver = true
-	sfxDeath:play()
+	sfx.play(sfx.death)
 
 	local numParts = numParts()
 

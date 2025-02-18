@@ -1,6 +1,7 @@
 import "CoreLibs/graphics"
 import "fonts"
 import "sfx"
+import "settings"
 import "high_score"
 import "main_menu"
 import "gameplay"
