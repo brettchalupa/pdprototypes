@@ -96,16 +96,24 @@ end
 
 function updateSnake()
 	if playdate.buttonIsPressed(playdate.kButtonLeft) then
-		snake.direction = "left"
+		if snake.direction ~= "right" then
+			snake.direction = "left"
+		end
 	end
 	if playdate.buttonIsPressed(playdate.kButtonRight) then
-		snake.direction = "right"
+		if snake.direction ~= "left" then
+			snake.direction = "right"
+		end
 	end
 	if playdate.buttonIsPressed(playdate.kButtonUp) then
-		snake.direction = "up"
+		if snake.direction ~= "down" then
+			snake.direction = "up"
+		end
 	end
 	if playdate.buttonIsPressed(playdate.kButtonDown) then
-		snake.direction = "down"
+		if snake.direction ~= "up" then
+			snake.direction = "down"
+		end
 	end
 
 	if updates % snake.movementDelay == 0 then
