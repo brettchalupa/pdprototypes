@@ -32,12 +32,12 @@ local highScore = nil -- we'll set this on game over
 function updateGameplay()
 	updates +=1
 
-	if not isGameOver then
-		updateSnake()
-	else
+	if isGameOver then
 		if playdate.buttonJustPressed(playdate.kButtonA) then
 			resetGame()
 		end
+	else
+		updateSnake()
 	end
 
 	if snake.gridX == apple.gridX and snake.gridY == apple.gridY then
@@ -45,23 +45,19 @@ function updateGameplay()
 	end
 
 	gfx.clear()
-	gfx.fillRect(snake.gridX * gridSize, snake.gridY * gridSize, gridSize, gridSize)
-	for _, part in pairs(snake.parts) do
-		gfx.fillRect(part.gridX * gridSize, part.gridY * gridSize, gridSize, gridSize)
-	end
-	gfx.fillCircleAtPoint(
-		apple.gridX * gridSize + gridSize / 2,
-		apple.gridY * gridSize + gridSize / 2,
-		gridSize / 2 - 2
-	)
 
 	if isGameOver then
-		gfx.drawText("*Game Over*", 40, 40);
-		gfx.drawText("Press the A button to play again", 40, 70);
-		gfx.drawText("Your Score: " .. numParts() .. " | High-Score: " .. highScore, 40, 100);
-		if newHighScore then
-			gfx.drawText("New high-score!", 40, 130);
+		drawGameOver()
+	else
+		gfx.fillRect(snake.gridX * gridSize, snake.gridY * gridSize, gridSize, gridSize)
+		for _, part in pairs(snake.parts) do
+			gfx.fillRect(part.gridX * gridSize, part.gridY * gridSize, gridSize, gridSize)
 		end
+		gfx.fillCircleAtPoint(
+			apple.gridX * gridSize + gridSize / 2,
+			apple.gridY * gridSize + gridSize / 2,
+			gridSize / 2 - 2
+		)
 	end
 end
 
@@ -71,6 +67,19 @@ function resetGame()
 	isGameOver = false
 	snake.parts = {}
 	spawnApple()
+end
+
+function drawGameOver()
+	gfx.setFont(fontRoobert20)
+	gfx.drawText("Game Over", 40, 40);
+
+	gfx.setFont(fontRoobert11)
+	gfx.drawText("Press the A button to play again", 40, 88);
+	gfx.drawText("Your Score: " .. numParts() .. " | High-Score: " .. highScore, 40, 120);
+
+	if newHighScore then
+		gfx.drawText("New high-score!", 40, 180);
+	end
 end
 
 function spawnApple()

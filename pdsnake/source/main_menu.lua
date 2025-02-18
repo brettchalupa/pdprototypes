@@ -8,7 +8,7 @@ local build <const> = playdate.metadata.buildNumber
 local versionAndBuild <const> = version .. " (" .. build .. ")"
 local author <const> = playdate.metadata.author
 
-local xPad <const> = 12
+local xPad <const> = 24
 
 local updates = 0
 
@@ -21,17 +21,21 @@ function updateMainMenu()
 
 	gfx.clear()
 
-	gfx.drawText("*PDSnake*", xPad, 40);
+	gfx.setFont(fontRoobert20)
+
+	gfx.drawText("PDSnake", xPad, 20);
+
+	gfx.setFont(fontRoobert11)
 
 	if updates % 60 < 30 then
 		gfx.drawText("A   Start", xPad + 4, 120);
 		gfx.drawCircleAtPoint(
-			xPad + 8,
-			128,
-			12
+			xPad + 10,
+			130,
+			14
 		)
 	end
 
-	gfx.drawText(versionAndBuild, 12, screenHeight - 32);
-	gfx.drawText(author, screenWidth - 116, screenHeight - 32);
+	gfx.drawText(versionAndBuild, xPad, screenHeight - 44);
+	gfx.drawText(author, screenWidth - 144, screenHeight - 44);
 end

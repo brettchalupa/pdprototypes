@@ -1,4 +1,5 @@
 import "CoreLibs/graphics"
+import "fonts"
 import "high_score"
 import "main_menu"
 import "gameplay"
