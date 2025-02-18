@@ -168,12 +168,12 @@ function endGame()
 
 	if saveScore then
 		if numParts > saveScore then
-			saveNewHighScore(numParts)
+			setNewHighScore(numParts)
 		else
 			highScore = saveScore
 		end
 	else
-		saveNewHighScore(numParts)
+		setNewHighScore(numParts)
 	end
 end
 
@@ -182,7 +182,7 @@ function numParts()
 	return partsCount
 end
 
-function saveNewHighScore(score)
+function setNewHighScore(score)
 	newHighScore = true
 	highScore = score
 	writeHighScore(score)
