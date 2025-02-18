@@ -1,5 +1,6 @@
 import "CoreLibs/graphics"
 import "fonts"
+import "sfx"
 import "high_score"
 import "main_menu"
 import "gameplay"
@@ -25,4 +26,3 @@ end
 function switchScene(newScene)
 	scene = newScene
 end
-

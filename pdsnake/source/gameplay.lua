@@ -9,8 +9,6 @@ local screenHeight <const> = playdate.display.getHeight()
 local gridWidth <const> = screenWidth / gridSize - 1
 local gridHeight <const> = screenHeight / gridSize - 1
 
-local sfxApple <const> = playdate.sound.sampleplayer.new("sounds/apple.wav")
-
 local snake = {
 	gridX = 2,
 	gridY = 2,
@@ -34,6 +32,7 @@ function updateGameplay()
 
 	if isGameOver then
 		if playdate.buttonJustPressed(playdate.kButtonA) then
+			sfxSelect:play()
 			resetGame()
 		end
 	else
@@ -186,6 +185,8 @@ end
 
 function endGame()
 	isGameOver = true
+	sfxDeath:play()
+
 	local numParts = numParts()
 
 	local saveScore = readHighScore()
