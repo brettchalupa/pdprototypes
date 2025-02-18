@@ -1,0 +1,6 @@
+compile:
+	pdc source snake.pdx
+
+simulate: compile
+	killall -9 PlaydateSimulator -q || true
+	PlaydateSimulator snake.pdx
