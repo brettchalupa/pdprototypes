@@ -2,6 +2,7 @@ import "CoreLibs/graphics"
 import "fonts"
 import "sfx"
 import "settings"
+import "screen"
 import "high_score"
 import "main_menu"
 import "gameplay"
@@ -21,6 +22,10 @@ function playdate.update()
 		updateMainMenu()
 	elseif scene == "gameplay" then
 		updateGameplay()
+	end
+
+	if settings.isDebug then
+		playdate.drawFPS(screen.width - 24, 12)
 	end
 end
 

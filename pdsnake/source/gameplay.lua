@@ -4,10 +4,8 @@ import "high_score"
 local gfx <const> = playdate.graphics
 
 local gridSize <const> = 20
-local screenWidth <const> = playdate.display.getWidth()
-local screenHeight <const> = playdate.display.getHeight()
-local gridWidth <const> = screenWidth / gridSize - 1
-local gridHeight <const> = screenHeight / gridSize - 1
+local gridWidth <const> = screen.width / gridSize - 1
+local gridHeight <const> = screen.height / gridSize - 1
 
 local snake = {
 	gridX = 2,

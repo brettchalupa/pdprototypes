@@ -1,8 +1,5 @@
 local gfx <const> = playdate.graphics
 
-local screenWidth <const> = playdate.display.getWidth()
-local screenHeight <const> = playdate.display.getHeight()
-
 local version <const> = playdate.metadata.version
 local build <const> = playdate.metadata.buildNumber
 local versionAndBuild <const> = version .. " (" .. build .. ")"
@@ -37,6 +34,6 @@ function updateMainMenu()
 		)
 	end
 
-	gfx.drawText(versionAndBuild, xPad, screenHeight - 44);
-	gfx.drawText(author, screenWidth - 144, screenHeight - 44);
+	gfx.drawText(versionAndBuild, xPad, screen.height - 44);
+	gfx.drawText(author, screen.width - 144, screen.height - 44);
 end

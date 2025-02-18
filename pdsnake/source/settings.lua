@@ -2,6 +2,8 @@ settings = {}
 
 settings.playSfx = true
 
+settings.isDebug = string.find(playdate.metadata.version, "-dev") ~= nil
+
 settings.load = function()
 	print("TODO: settings load")
 end
