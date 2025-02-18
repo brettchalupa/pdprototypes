@@ -1,4 +1,5 @@
 compile:
+	rm -rf snake.pdx
 	pdc source snake.pdx
 
 simulate: compile
