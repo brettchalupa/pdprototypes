@@ -9,6 +9,8 @@ local screenHeight <const> = playdate.display.getHeight()
 local gridWidth <const> = screenWidth / gridSize - 1
 local gridHeight <const> = screenHeight / gridSize - 1
 
+local sfxApple <const> = playdate.sound.sampleplayer.new("sounds/apple.wav")
+
 local snake = {
 	gridX = 2,
 	gridY = 2,
@@ -39,8 +41,7 @@ function updateGameplay()
 	end
 
 	if snake.gridX == apple.gridX and snake.gridY == apple.gridY then
-		table.insert(snake.parts, { gridX = snake.gridX, gridY = snake.gridY })
-		spawnApple()
+		eatApple()
 	end
 
 	gfx.clear()
@@ -157,6 +158,12 @@ function moveSnake()
 	if snake.gridY < 0 then
 		snake.gridY = gridHeight
 	end
+end
+
+function eatApple()
+	sfxApple:play()
+	table.insert(snake.parts, { gridX = snake.gridX, gridY = snake.gridY })
+	spawnApple()
 end
 
 function checkForSnakeBite()
