@@ -24,15 +24,41 @@ local updates = 0
 local isGameOver = false
 local newHighScore = false
 local highScore = nil -- we'll set this on game over
+local scene = "main_menu"
 
 local menu = playdate.getSystemMenu()
 menu:addMenuItem("reset score", function()
 	playdate.datastore.write({ highScore = 0 })
 end)
+menu:addMenuItem("main menu", function()
+	switchScene("main_menu")
+end)
+
+function switchScene(newScene)
+	scene = newScene
+end
 
 function playdate.update()
 	updates += 1
 
+	if scene == "main_menu" then
+		updateMainMenu()
+	elseif scene == "gameplay" then
+		updateGameplay()
+	end
+end
+
+function updateMainMenu()
+	if playdate.buttonIsPressed(playdate.kButtonA) then
+		switchScene("gameplay")
+	end
+
+	gfx.clear()
+	gfx.drawText("*PDSnake*", 40, 40);
+	gfx.drawText("Press A to Start", 120, 40);
+end
+
+function updateGameplay()
 	if not isGameOver then
 		updateSnake()
 	else
@@ -45,7 +71,7 @@ function playdate.update()
 		table.insert(snake.parts, { gridX = snake.gridX, gridY = snake.gridY })
 		spawnApple()
 	end
-	
+
 	gfx.clear()
 	gfx.fillRect(snake.gridX * gridSize, snake.gridY * gridSize, gridSize, gridSize)
 	for _, part in pairs(snake.parts) do
