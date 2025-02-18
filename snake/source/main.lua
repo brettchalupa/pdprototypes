@@ -1,4 +1,5 @@
 import "CoreLibs/graphics"
+import "high_score"
 import "main_menu"
 import "gameplay"
 
@@ -6,7 +7,7 @@ local scene = "main_menu"
 
 local menu = playdate.getSystemMenu()
 menu:addMenuItem("reset score", function()
-	playdate.datastore.write({ highScore = 0 })
+	writeHighScore(0)
 end)
 menu:addMenuItem("main menu", function()
 	switchScene("main_menu")

@@ -1,4 +1,5 @@
 import "CoreLibs/graphics"
+import "high_score"
 
 local gfx <const> = playdate.graphics
 
@@ -161,15 +162,17 @@ end
 
 function endGame()
 	isGameOver = true
-	local save = playdate.datastore.read()
 	local numParts = numParts()
-	if save ~= nil and save.highScore ~= nil then
-		if numParts > save.highScore then
+
+	local saveScore = readHighScore()
+
+	if saveScore then
+		if numParts > saveScore then
 			saveNewHighScore(numParts)
 		else
-			highScore = save.highScore
+			highScore = saveScore
 		end
-	else -- first save
+	else
 		saveNewHighScore(numParts)
 	end
 end
@@ -182,5 +185,5 @@ end
 function saveNewHighScore(score)
 	newHighScore = true
 	highScore = score
-	playdate.datastore.write({ highScore = score})
+	writeHighScore(score)
 end
