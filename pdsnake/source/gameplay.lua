@@ -198,8 +198,7 @@ function endGame()
 end
 
 function numParts()
-	local partsCount, _ = table.getsize(snake.parts)
-	return partsCount
+	return #snake.parts
 end
 
 function setNewHighScore(score)
