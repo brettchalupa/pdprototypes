@@ -1,6 +1,5 @@
 settings = {
-	playSfx = true,
-	isDebug = string.find(playdate.metadata.version, "-dev") ~= nil,
+	playSfx = true, -- default
 }
 
 function settings.load()

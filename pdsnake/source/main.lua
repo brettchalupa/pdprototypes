@@ -4,12 +4,14 @@ import "sfx"
 import "settings"
 import "screen"
 import "scene"
+import "meta"
 import "high_score"
 import "main_menu"
 import "gameplay"
 
 local settings <const> = settings
 local scene <const> = scene
+local meta <const> = meta
 
 settings.load()
 
@@ -25,7 +27,7 @@ end)
 function playdate.update()
 	scene.updateCurrent()
 
-	if settings.isDebug then
+	if meta.isDebug then
 		playdate.drawFPS(screen.width - 24, 12)
 	end
 end

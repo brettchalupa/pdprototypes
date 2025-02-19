@@ -1,9 +1,6 @@
 local gfx <const> = playdate.graphics
 
-local version <const> = playdate.metadata.version
-local build <const> = playdate.metadata.buildNumber
-local versionAndBuild <const> = version .. " (" .. build .. ")"
-local author <const> = playdate.metadata.author
+local meta <const> = meta
 local sfx <const> = sfx
 local fonts <const> = fonts
 local xPad <const> = 24
@@ -24,7 +21,7 @@ function updateMainMenu()
 
 	gfx.setFont(fonts.medium)
 
-	gfx.drawText("PDSnake", xPad, 20);
+	gfx.drawText(meta.name, xPad, 20);
 
 	gfx.setFont(fonts.small)
 
@@ -37,6 +34,6 @@ function updateMainMenu()
 		)
 	end
 
-	gfx.drawText(versionAndBuild, xPad, screen.height - 44);
-	gfx.drawText(author, screen.width - 144, screen.height - 44);
+	gfx.drawText(meta.versionAndBuild, xPad, screen.height - 44);
+	gfx.drawText(meta.author, screen.width - 144, screen.height - 44);
 end
