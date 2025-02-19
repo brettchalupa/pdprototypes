@@ -190,14 +190,10 @@ function endGame()
 
 	local saveScore = highScore.read()
 
-	if saveScore then
-		if numParts > saveScore then
-			setNewHighScore(numParts)
-		else
-			cachedHighScore = saveScore
-		end
-	else
+	if numParts > saveScore then
 		setNewHighScore(numParts)
+	else
+		cachedHighScore = saveScore
 	end
 end
 
