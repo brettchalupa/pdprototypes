@@ -1,3 +1,4 @@
+import "CoreLibs/timer"
 import "CoreLibs/graphics"
 import "store"
 import "fonts"
@@ -26,6 +27,8 @@ menu:addMenuItem("main menu", function()
 end)
 
 function playdate.update()
+	playdate.timer.updateTimers()
+
 	scene.updateCurrent()
 
 	if meta.isDebug then

@@ -8,28 +8,41 @@ local gridSize <const> = 20
 local gridWidth <const> = screen.width / gridSize - 1
 local gridHeight <const> = screen.height / gridSize - 1
 
-local snake = {
-	gridX = 2,
-	gridY = 2,
-	direction = "right",
-	inputDirection = nil,
-	movementDelay = 4,
-	parts = {}
-}
+local snake = {}
+
+function resetSnake()
+	snake = {
+		gridX = 2,
+		gridY = 2,
+		direction = "right",
+		inputDirection = nil,
+		movementDelayMS = 100,
+		parts = {}
+	}
+end
+
+resetSnake()
+
+local movementTimer = playdate.timer.new(snake.movementDelayMS, function()
+	if isGameOver then
+		return
+	end
+
+	moveSnake()
+end)
+movementTimer:pause()
+movementTimer.repeats = true
 
 local apple = {
 	gridX = 5,
 	gridY = 5,
 }
 
-local updates = 0
 local isGameOver = false
 local newHighScore = false
 local cachedHighScore = highScore.read()
 
 function updateGameplay()
-	updates +=1
-
 	if isGameOver then
 		if playdate.buttonJustPressed(playdate.kButtonA) then
 			sfx.play(sfx.select)
@@ -64,8 +77,9 @@ function resetGame()
 	newHighScore = false
 	cachedHighScore = highScore.read()
 	isGameOver = false
-	snake.parts = {}
+	resetSnake()
 	spawnApple()
+	resetMovementTimer()
 end
 
 function drawGameOver()
@@ -124,11 +138,6 @@ function updateSnake()
 			snake.inputDirection = "down"
 		end
 	end
-
-	if updates % snake.movementDelay == 0 then
-		moveSnake()
-		checkForSnakeBite()
-	end
 end
 
 function moveSnake()
@@ -170,11 +179,34 @@ function moveSnake()
 	end
 
 	snake.inputDirection = nil
+
+	checkForSnakeBite()
 end
 
 function eatApple()
 	sfx.play(sfx.apple)
 	table.insert(snake.parts, { gridX = snake.gridX, gridY = snake.gridY })
+
+	if #snake.parts == 5 then
+		snake.movementDelayMS = 90
+		resetMovementTimer()
+	end
+
+	if #snake.parts == 10 then
+		snake.movementDelayMS = 80
+		resetMovementTimer()
+	end
+
+	if #snake.parts == 20 then
+		snake.movementDelayMS = 60
+		resetMovementTimer()
+	end
+
+	if #snake.parts == 30 then
+		snake.movementDelayMS = 50
+		resetMovementTimer()
+	end
+
 	spawnApple()
 end
 
@@ -190,6 +222,7 @@ end
 function endGame()
 	isGameOver = true
 	sfx.play(sfx.death)
+	movementTimer:pause()
 
 	local numParts = numParts()
 
@@ -210,4 +243,10 @@ function setNewHighScore(score)
 	newHighScore = true
 	cachedHighScore = score
 	highScore.write(score)
+end
+
+function resetMovementTimer()
+	movementTimer.duration = snake.movementDelayMS
+	movementTimer:reset()
+	movementTimer:start()
 end
