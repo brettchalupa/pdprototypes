@@ -6,11 +6,14 @@ local fonts <const> = fonts
 local xPad <const> = 24
 local scene <const> = scene
 
-local updates = 0
+local drawStart = true
+local toggleTimer = playdate.timer.new(600, function()
+	drawStart = not drawStart
+end)
+toggleTimer.repeats = true
+toggleTimer.reverse = true
 
 function updateMainMenu()
-	updates += 1
-
 	if playdate.buttonIsPressed(playdate.kButtonA) then
 		sfx.play(sfx.select)
 		resetGame()
@@ -25,7 +28,7 @@ function updateMainMenu()
 
 	gfx.setFont(fonts.small)
 
-	if updates % 60 < 30 then
+	if drawStart then
 		gfx.drawText("A   Start", xPad + 4, 120);
 		gfx.drawCircleAtPoint(
 			xPad + 10,
