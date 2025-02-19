@@ -1,23 +1,15 @@
 highScore = {}
 
 function highScore.write(score)
-	local save = playdate.datastore.read()
-
-	if save == nil then
-		save = {}
-	end
-
-	save.highScore = score
-
-	playdate.datastore.write(save)
+	store.mergeAndWrite({ highScore = score })
 end
 
 function highScore.read()
-	local save = playdate.datastore.read()
+	local save = store.read()
 
-	if save == nil then
+	if save == nil or save.highScore == nil then
 		return 0
+	else
+		return save.highScore
 	end
-
-	return save.highScore
 end

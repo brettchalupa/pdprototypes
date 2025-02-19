@@ -1,4 +1,5 @@
 import "CoreLibs/graphics"
+import "store"
 import "fonts"
 import "sfx"
 import "settings"
