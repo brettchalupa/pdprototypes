@@ -16,7 +16,7 @@ function highScore.read()
 	local save = playdate.datastore.read()
 
 	if save == nil then
-		return nil
+		return 0
 	end
 
 	return save.highScore
