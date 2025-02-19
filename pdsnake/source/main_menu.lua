@@ -1,3 +1,5 @@
+mainMenu = {}
+
 local gfx <const> = playdate.graphics
 
 local meta <const> = meta
@@ -13,11 +15,14 @@ end)
 toggleTimer.repeats = true
 toggleTimer.reverse = true
 
-function updateMainMenu()
+local highScore = highScore.read()
+
+function mainMenu.update()
 	if playdate.buttonIsPressed(playdate.kButtonA) then
 		sfx.play(sfx.select)
 		resetGame()
 		scene.switchTo(scene.gameplay)
+		toggleTimer:pause()
 	end
 
 	gfx.clear()
@@ -37,6 +42,17 @@ function updateMainMenu()
 		)
 	end
 
+	if highScore > 0 then
+		gfx.drawText("High-Score: " .. highScore, 240, 26);
+	end
+
 	gfx.drawText(meta.versionAndBuild, xPad, screen.height - 44);
-	gfx.drawText(meta.author, screen.width - 144, screen.height - 44);
+	gfx.drawText("by " .. meta.author, screen.width - 164, screen.height - 44);
+end
+
+function mainMenu.init()
+	drawStart = true
+	toggleTimer:reset()
+	toggleTimer:start()
+	highScore = highScore.read()
 end

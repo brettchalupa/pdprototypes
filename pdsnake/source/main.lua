@@ -1,3 +1,4 @@
+import "CoreLibs/object"
 import "CoreLibs/timer"
 import "CoreLibs/graphics"
 import "store"

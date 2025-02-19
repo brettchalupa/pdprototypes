@@ -7,7 +7,7 @@ scene.current = scene.mainMenu
 
 function scene.updateCurrent()
 	if scene.current == scene.mainMenu then
-		updateMainMenu()
+		mainMenu.update()
 	elseif scene.current == scene.gameplay then
 		updateGameplay()
 	end
@@ -20,4 +20,8 @@ function scene.switchTo(targetScene)
 	end
 
 	scene.current = targetScene
+
+	if scene.current == scene.mainMenu then
+		mainMenu.init()
+	end
 end

@@ -3,7 +3,7 @@ local pdstore <const> = playdate.datastore
 store = {}
 
 function store.read()
-	pdstore.read()
+	return pdstore.read()
 end
 
 function store.write(data)
