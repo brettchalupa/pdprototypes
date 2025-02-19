@@ -4,7 +4,8 @@ local version <const> = playdate.metadata.version
 local build <const> = playdate.metadata.buildNumber
 local versionAndBuild <const> = version .. " (" .. build .. ")"
 local author <const> = playdate.metadata.author
-
+local sfx <const> = sfx
+local fonts <const> = fonts
 local xPad <const> = 24
 
 local updates = 0
@@ -19,11 +20,11 @@ function updateMainMenu()
 
 	gfx.clear()
 
-	gfx.setFont(fontRoobert20)
+	gfx.setFont(fonts.medium)
 
 	gfx.drawText("PDSnake", xPad, 20);
 
-	gfx.setFont(fontRoobert11)
+	gfx.setFont(fonts.small)
 
 	if updates % 60 < 30 then
 		gfx.drawText("A   Start", xPad + 4, 120);

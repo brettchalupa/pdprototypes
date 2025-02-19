@@ -1,4 +1,6 @@
-function writeHighScore(score)
+highScore = {}
+
+function highScore.write(score)
 	local save = playdate.datastore.read()
 
 	if save == nil then
@@ -10,7 +12,7 @@ function writeHighScore(score)
 	playdate.datastore.write(save)
 end
 
-function readHighScore()
+function highScore.read()
 	local save = playdate.datastore.read()
 
 	if save == nil then

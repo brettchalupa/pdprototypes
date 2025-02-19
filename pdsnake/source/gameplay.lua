@@ -2,6 +2,7 @@ import "CoreLibs/graphics"
 import "high_score"
 
 local gfx <const> = playdate.graphics
+local fonts <const> = fonts
 
 local gridSize <const> = 20
 local gridWidth <const> = screen.width / gridSize - 1
@@ -23,7 +24,7 @@ local apple = {
 local updates = 0
 local isGameOver = false
 local newHighScore = false
-local highScore = nil -- we'll set this on game over
+local cachedHighScore = highScore.read()
 
 function updateGameplay()
 	updates +=1
@@ -60,19 +61,19 @@ end
 
 function resetGame()
 	newHighScore = false
-	highScore = nil
+	cachedHighScore = highScore.read()
 	isGameOver = false
 	snake.parts = {}
 	spawnApple()
 end
 
 function drawGameOver()
-	gfx.setFont(fontRoobert20)
+	gfx.setFont(fonts.medium)
 	gfx.drawText("Game Over", 40, 40);
 
-	gfx.setFont(fontRoobert11)
+	gfx.setFont(fonts.small)
 	gfx.drawText("Press the A button to play again", 40, 88);
-	gfx.drawText("Your Score: " .. numParts() .. " | High-Score: " .. highScore, 40, 120);
+	gfx.drawText("Your Score: " .. numParts() .. " | High-Score: " .. cachedHighScore, 40, 120);
 
 	if newHighScore then
 		gfx.drawText("New high-score!", 40, 180);
@@ -187,13 +188,13 @@ function endGame()
 
 	local numParts = numParts()
 
-	local saveScore = readHighScore()
+	local saveScore = highScore.read()
 
 	if saveScore then
 		if numParts > saveScore then
 			setNewHighScore(numParts)
 		else
-			highScore = saveScore
+			cachedHighScore = saveScore
 		end
 	else
 		setNewHighScore(numParts)
@@ -207,6 +208,6 @@ end
 
 function setNewHighScore(score)
 	newHighScore = true
-	highScore = score
-	writeHighScore(score)
+	cachedHighScore = score
+	highScore.write(score)
 end

@@ -1,8 +1,7 @@
-settings = {}
-
-settings.playSfx = true
-
-settings.isDebug = string.find(playdate.metadata.version, "-dev") ~= nil
+settings = {
+	playSfx = true,
+	isDebug = string.find(playdate.metadata.version, "-dev") ~= nil,
+}
 
 function settings.load()
 	local save = playdate.datastore.read()
