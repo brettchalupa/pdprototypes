@@ -17,6 +17,8 @@ local meta <const> = meta
 
 settings.load()
 
+playdate.display.setRefreshRate(50)
+
 local menu = playdate.getSystemMenu()
 menu:addCheckmarkMenuItem("play sfx", settings.playSfx, settings.toggleSfx)
 menu:addMenuItem("reset score", function()
