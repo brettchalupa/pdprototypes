@@ -17,16 +17,12 @@ local meta <const> = meta
 
 settings.load()
 
-playdate.display.setRefreshRate(50)
-
 local menu = playdate.getSystemMenu()
-menu:addCheckmarkMenuItem("play sfx", settings.playSfx, settings.toggleSfx)
 menu:addMenuItem("reset score", function()
 	highScore.write(0)
 end)
-menu:addMenuItem("main menu", function()
-	scene.switchTo(scene.mainMenu)
-end)
+menu:addCheckmarkMenuItem("play sfx", settings.playSfx, settings.toggleSfx)
+menu:addCheckmarkMenuItem("batt. saver", settings.batterySaver, settings.toggleBatterySaver)
 
 function playdate.update()
 	playdate.timer.updateTimers()
