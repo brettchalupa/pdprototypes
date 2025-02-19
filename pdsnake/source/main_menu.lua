@@ -7,6 +7,7 @@ local author <const> = playdate.metadata.author
 local sfx <const> = sfx
 local fonts <const> = fonts
 local xPad <const> = 24
+local scene <const> = scene
 
 local updates = 0
 
@@ -15,7 +16,8 @@ function updateMainMenu()
 
 	if playdate.buttonIsPressed(playdate.kButtonA) then
 		sfx.play(sfx.select)
-		switchScene("gameplay")
+		resetGame()
+		scene.switchTo(scene.gameplay)
 	end
 
 	gfx.clear()
