@@ -12,6 +12,7 @@ local snake = {
 	gridX = 2,
 	gridY = 2,
 	direction = "right",
+	inputDirection = nil,
 	movementDelay = 4,
 	parts = {}
 }
@@ -105,22 +106,22 @@ end
 function updateSnake()
 	if playdate.buttonIsPressed(playdate.kButtonLeft) then
 		if snake.direction ~= "right" then
-			snake.direction = "left"
+			snake.inputDirection = "left"
 		end
 	end
 	if playdate.buttonIsPressed(playdate.kButtonRight) then
 		if snake.direction ~= "left" then
-			snake.direction = "right"
+			snake.inputDirection = "right"
 		end
 	end
 	if playdate.buttonIsPressed(playdate.kButtonUp) then
 		if snake.direction ~= "down" then
-			snake.direction = "up"
+			snake.inputDirection = "up"
 		end
 	end
 	if playdate.buttonIsPressed(playdate.kButtonDown) then
 		if snake.direction ~= "up" then
-			snake.direction = "down"
+			snake.inputDirection = "down"
 		end
 	end
 
@@ -139,6 +140,8 @@ function moveSnake()
 		part.gridY = prevPos.gridY
 		prevPos = segmentPos
 	end
+
+	snake.direction = snake.inputDirection or snake.direction
 
 	if snake.direction == "right" then
 		snake.gridX += 1
@@ -165,6 +168,8 @@ function moveSnake()
 	if snake.gridY < 0 then
 		snake.gridY = gridHeight
 	end
+
+	snake.inputDirection = nil
 end
 
 function eatApple()
