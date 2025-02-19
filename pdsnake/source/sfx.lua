@@ -1,14 +1,18 @@
 sfx = {}
 
-sfx.apple = playdate.sound.sampleplayer.new("sounds/apple.wav")
-sfx.death = playdate.sound.sampleplayer.new("sounds/death.wav")
-sfx.select = sfx.apple
+function sfx.load(path)
+	return playdate.sound.sampleplayer.new(path)
+end
 
-sfx.apple:setVolume(0.5)
-sfx.death:setVolume(0.5)
-
-sfx.play = function(sound)
+function sfx.play(sound)
 	if settings.playSfx then
 		sound:play()
 	end
 end
+
+sfx.apple = sfx.load("sounds/apple.wav")
+sfx.death = sfx.load("sounds/death.wav")
+sfx.select = sfx.apple
+
+sfx.apple:setVolume(0.5)
+sfx.death:setVolume(0.5)
