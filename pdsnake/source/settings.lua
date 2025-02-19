@@ -4,14 +4,28 @@ settings.playSfx = true
 
 settings.isDebug = string.find(playdate.metadata.version, "-dev") ~= nil
 
-settings.load = function()
-	print("TODO: settings load")
+function settings.load()
+	local save = playdate.datastore.read()
+
+	if save and save.playSfx ~= nil then
+		settings.playSfx = save.playSfx
+	end
+
+	return settings.playSfx
 end
 
-settings.save = function()
-	print("TODO: settings save")
+function settings.save()
+	local save = playdate.datastore.read()
+
+	if save == nil then
+		save = {}
+	end
+
+	save.playSfx = settings.playSfx
+	playdate.datastore.write(save)
 end
 
-settings.toggleSfx = function()
+function settings.toggleSfx()
 	settings.playSfx = not settings.playSfx
+	settings.save()
 end

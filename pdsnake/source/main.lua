@@ -9,7 +9,10 @@ import "gameplay"
 
 local scene = "main_menu"
 
+settings.load()
+
 local menu = playdate.getSystemMenu()
+menu:addCheckmarkMenuItem("play sfx", settings.playSfx, settings.toggleSfx)
 menu:addMenuItem("reset score", function()
 	writeHighScore(0)
 end)
