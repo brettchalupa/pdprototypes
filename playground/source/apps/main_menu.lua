@@ -63,7 +63,7 @@ function mainMenu.drawApps()
 		gfx.drawText(v.name, 24, i * 24 + 42)
 
 		if currentAppIndex == i then
-			gfx.fillRect(math.sin(playdate.getCurrentTimeMilliseconds() / 140) + 8, i * 24 + 42 + 4, 8, 8, 0)
+			gfx.fillRect(math.sin(playdate.getCurrentTimeMilliseconds() / 140) + 8, i * 24 + 42 + 6, 8, 8, 0)
 		end
 	end
 end
