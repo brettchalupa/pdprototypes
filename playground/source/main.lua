@@ -6,10 +6,10 @@ import "apps"
 local meta <const> = meta
 local apps <const> = apps
 
-local currentApp = apps.mainMenu
+apps.init()
 
 function playdate.update()
-	currentApp.update()
+	apps.current.update()
 
 	if meta.isDebug then
 		playdate.drawFPS(screen.width - 24, 12)
