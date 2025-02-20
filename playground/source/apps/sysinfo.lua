@@ -16,11 +16,13 @@ function apps.sysinfo.update()
 	end
 
 	gfx.clear()
-	gfx.drawText("*Sysinfo*", 12, 12)
+	gfx.setFont(fonts.medium)
+	gfx.drawText("Sysinfo", 12, 12)
+	gfx.setFont(fonts.small)
 
 	local i = 1
 
-	gfx.drawText("Language: " .. sysinfo.currentLanguage(), 12, i * 20 + 24);
+	gfx.drawText("Language: " .. sysinfo.currentLanguage(), 12, i * 24 + 28);
 	i += 1
 
 	powerStatus = playdate.getPowerStatus()
@@ -28,20 +30,20 @@ function apps.sysinfo.update()
 	for k, v in pairs(powerStatus) do
 		table.insert(powerStatusStrs, k .. ": " .. tostring(v) .. " | ")
 	end
-	gfx.drawText("Power Status:", 12, i * 20 + 24);
+	gfx.drawText("Power Status:", 12, i * 24 + 28);
 	i += 1
-	gfx.drawText(table.concat(powerStatusStrs), 24, i * 20 + 24);
+	gfx.drawText(table.concat(powerStatusStrs), 28, i * 24 + 28);
 	i += 1
 
-	gfx.drawText("battery %: " .. tostring(playdate.getBatteryPercentage()), 24, i * 20 + 24);
+	gfx.drawText("battery %: " .. tostring(playdate.getBatteryPercentage()), 28, i * 24 + 28);
 	i += 1
-	gfx.drawText("battery voltage: " .. tostring(playdate.getBatteryVoltage()), 24, i * 20 + 24);
+	gfx.drawText("battery voltage: " .. tostring(playdate.getBatteryVoltage()), 28, i * 24 + 28);
 	i += 1
-	gfx.drawText("Setting - reduce flashing: " .. tostring(playdate.getReduceFlashing()), 12, i * 20 + 24);
+	gfx.drawText("Setting - reduce flashing: " .. tostring(playdate.getReduceFlashing()), 12, i * 24 + 28);
 	i += 1
-	gfx.drawText("Setting - flipped: " .. tostring(playdate.getFlipped()), 12, i * 20 + 24);
+	gfx.drawText("Setting - flipped: " .. tostring(playdate.getFlipped()), 12, i * 24 + 28);
 	i += 1
-	gfx.drawText("Crank docked: " .. tostring(playdate.isCrankDocked()), 12, i * 20 + 24);
+	gfx.drawText("Crank docked: " .. tostring(playdate.isCrankDocked()), 12, i * 24 + 28);
 end
 
 function sysinfo.currentLanguage()

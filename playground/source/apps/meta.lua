@@ -8,20 +8,22 @@ apps.meta = {
 
 function apps.meta.init()
 	gfx.clear()
-	gfx.drawText("*Meta*", 12, 12)
+	gfx.setFont(fonts.medium)
+	gfx.drawText("Meta", 12, 12)
+	gfx.setFont(fonts.small)
 
 	local i = 0
 	for k, v in pairs(meta) do
-		gfx.drawText(k .. ": " .. tostring(v), 12, i * 20 + 38);
+		gfx.drawText(k .. ": " .. tostring(v), 12, i * 24 + 38);
 		i += 1
 	end
 
 	apiVer, _ = playdate.apiVersion()
-	gfx.drawText("Playdate API Ver: " .. tostring(apiVer), 12, i * 20 + 38);
+	gfx.drawText("Playdate API Ver: " .. tostring(apiVer), 12, i * 24 + 38);
 
 	i +=1
 
-	gfx.drawText("isSimulator: " .. tostring(playdate.isSimulator == 1), 12, i * 20 + 38);
+	gfx.drawText("isSimulator: " .. tostring(playdate.isSimulator == 1), 12, i * 24 + 38);
 end
 
 function apps.meta.update()

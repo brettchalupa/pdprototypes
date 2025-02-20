@@ -49,8 +49,10 @@ function apps.mainMenu.update()
 
 	-- todo: refactor to only draw this when it changes
 	gfx.clear()
-	gfx.drawText("*Playdate Playground*", 12, 12)
+	gfx.setFont(fonts.medium)
+	gfx.drawText("Playdate Playground", 12, 12)
 
+	gfx.setFont(fonts.small)
 	gfx.drawText(meta.versionAndBuild, 12, screen.height - 44);
 	gfx.drawText("by " .. meta.author, screen.width - 164, screen.height - 44);
 	mainMenu.drawApps()

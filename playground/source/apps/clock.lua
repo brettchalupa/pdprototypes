@@ -14,15 +14,17 @@ function apps.clock.update()
 	end
 
 	gfx.clear()
-	gfx.drawText("*Clock*", 12, 12)
+	gfx.setFont(fonts.medium)
+	gfx.drawText("Clock", 12, 12)
 
+	gfx.setFont(fonts.small)
 	local i = 1
 
-	gfx.drawText("Time active (ms): " .. tostring(playdate.getCurrentTimeMilliseconds()), 12, i * 20 + 24);
+	gfx.drawText("Time active (ms): " .. tostring(playdate.getCurrentTimeMilliseconds()), 12, i * 24 + 28);
 	i += 1
-	gfx.drawText("Seconds since epoch: " .. tostring(playdate.getSecondsSinceEpoch()), 12, i * 20 + 24);
+	gfx.drawText("Seconds since epoch: " .. tostring(playdate.getSecondsSinceEpoch()), 12, i * 24 + 28);
 	i += 1
-	gfx.drawText("Current time: " .. currentTime(), 12, i * 20 + 24);
+	gfx.drawText("Current time: " .. currentTime(), 12, i * 24 + 28);
 	i += 1
 end
 
