@@ -1,6 +1,7 @@
 apps = {}
 
 import "apps/accel"
+import "apps/debug"
 import "apps/input"
 import "apps/main_menu"
 import "apps/meta"
