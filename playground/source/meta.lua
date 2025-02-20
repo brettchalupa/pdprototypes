@@ -1,4 +1,3 @@
-printTable(playdate.metadata)
 meta = {
 	name = playdate.metadata.name,
 	version = playdate.metadata.version,
