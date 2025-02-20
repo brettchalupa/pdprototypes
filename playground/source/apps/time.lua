@@ -1,12 +1,12 @@
 local gfx <const> = playdate.graphics
 
-apps.clock = {
-	name = "Clock",
-	key = "clock",
+apps.time = {
+	name = "Time",
+	key = "time",
 	description = "Displays time related details",
 }
 
-function apps.clock.update()
+function apps.time.update()
 	if playdate.buttonJustPressed(playdate.kButtonB) then
 		sfx.play(sfx.back)
 		apps.switchTo(apps.mainMenu)
@@ -15,7 +15,7 @@ function apps.clock.update()
 
 	gfx.clear()
 	gfx.setFont(fonts.medium)
-	gfx.drawText("Clock", 12, 12)
+	gfx.drawText("Time", 12, 12)
 
 	gfx.setFont(fonts.small)
 	local i = 1

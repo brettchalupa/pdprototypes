@@ -1,6 +1,6 @@
 apps = {}
 
-import "apps/clock"
+import "apps/time"
 import "apps/main_menu"
 import "apps/meta"
 import "apps/sysinfo"
