@@ -1,7 +1,9 @@
 apps = {}
 
+import "apps/clock"
 import "apps/main_menu"
 import "apps/meta"
+import "apps/sysinfo"
 
 function apps.init()
 	apps.switchTo(apps.mainMenu)

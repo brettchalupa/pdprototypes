@@ -3,7 +3,7 @@ local gfx <const> = playdate.graphics
 apps.meta = {
 	name = "Meta",
 	key = "meta",
-	description = "Information about the game, SDK, adn console",
+	description = "Information about the game and SDK",
 }
 
 function apps.meta.init()
@@ -18,10 +18,14 @@ function apps.meta.init()
 
 	apiVer, _ = playdate.apiVersion()
 	gfx.drawText("Playdate API Ver: " .. tostring(apiVer), 12, i * 20 + 38);
+
+	i +=1
+
+	gfx.drawText("isSimulator: " .. tostring(playdate.isSimulator == 1), 12, i * 20 + 38);
 end
 
 function apps.meta.update()
-	if playdate.buttonIsPressed(playdate.kButtonB) then
+	if playdate.buttonJustPressed(playdate.kButtonB) then
 		apps.switchTo(apps.mainMenu)
 		return
 	end
