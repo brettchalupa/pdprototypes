@@ -11,8 +11,8 @@ function apps.init()
 end
 
 function apps.switchTo(app)
-	if apps.current and apps.current.deinit then
-		apps.current.deinit()
+	if apps.current and apps.current.denit then
+		apps.current.denit()
 	end
 
 	apps.current = app
