@@ -8,6 +8,7 @@ apps.clock = {
 
 function apps.clock.update()
 	if playdate.buttonJustPressed(playdate.kButtonB) then
+		sfx.play(sfx.back)
 		apps.switchTo(apps.mainMenu)
 		return
 	end

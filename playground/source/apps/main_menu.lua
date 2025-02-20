@@ -11,8 +11,6 @@ local menuApps = {}
 function apps.mainMenu.init()
 	if #menuApps == 0 then
 		for k, v in pairs(apps) do
-			print(k)
-			print(mainMenu.key ~= k)
 			if k ~= "current" and k ~= "mainMenu" and not util.isFunction(v) then
 				table.insert(menuApps, v)
 			end
@@ -26,11 +24,14 @@ end
 
 function apps.mainMenu.update()
 	if playdate.buttonJustPressed(playdate.kButtonA) then
+		sfx.play(sfx.select)
 		apps.switchTo(menuApps[currentAppIndex])
 		return
 	end
 
 	if playdate.buttonJustPressed(playdate.kButtonUp) then
+		sfx.play(sfx.up)
+
 		currentAppIndex -= 1
 		if currentAppIndex < 1 then
 			currentAppIndex = #menuApps
@@ -38,6 +39,8 @@ function apps.mainMenu.update()
 	end
 
 	if playdate.buttonJustPressed(playdate.kButtonDown) then
+		sfx.play(sfx.down)
+
 		currentAppIndex += 1
 		if currentAppIndex > #menuApps then
 			currentAppIndex = 1

@@ -3,6 +3,7 @@ import "util"
 import "meta"
 import "screen"
 import "apps"
+import "sfx"
 
 local meta <const> = meta
 local apps <const> = apps
