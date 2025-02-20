@@ -1,4 +1,6 @@
 import "CoreLibs/object"
+import "CoreLibs/graphics"
+
 import "util"
 import "meta"
 import "screen"
@@ -13,6 +15,12 @@ local apps <const> = apps
 
 apps.init()
 gfx.setFont(fonts.small)
+
+local menu = playdate.getSystemMenu()
+
+menu:addMenuItem("main menu", function()
+		apps.switchTo(apps.mainMenu)
+end)
 
 function playdate.update()
 	apps.current.update()
