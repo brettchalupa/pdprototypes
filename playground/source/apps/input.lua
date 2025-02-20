@@ -8,6 +8,7 @@ apps.input = {
 local input = apps.input
 
 local buttons = nil
+
 local function decodePlaydateButtons(bitmask)
   local pressedButtons = {}
 
@@ -41,13 +42,16 @@ function input.update()
 
 	local down, pressed, released = playdate.getButtonState()
 
-	local i = 1
-  for _, button in ipairs(buttons) do
+  for i, button in ipairs(buttons) do
     local value, buttonName = button[1], button[2]
 
 		gfx.drawText(buttonName .. ": " .. tostring(playdate.buttonIsPressed(value)), 12, 24 * i + 24)
-		i += 1
   end
+
+	if not playdate.isCrankDocked() then
+		gfx.drawText("Crank Pos: " .. tostring(playdate.getCrankPosition()), 160, 48)
+		gfx.drawText("Crank Change: " .. tostring(playdate.getCrankChange()), 160, 72)
+	end
 end
 
 function input.denit()
