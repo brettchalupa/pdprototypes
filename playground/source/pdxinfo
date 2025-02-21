@@ -1,6 +1,0 @@
-name=Playground
-author=Brett Chalupa
-description=Exercising everything included in the Playdate SDK.
-bundleID=com.brettmakesgames.pdplayground
-version=0.1-dev
-buildNumber=0
