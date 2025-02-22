@@ -19,7 +19,7 @@ function listview:drawCell(section, row, column, selected, x, y, width, height)
 	else
 		gfx.setImageDrawMode(gfx.kDrawModeCopy)
 	end
-	gfx.drawTextInRect(menuOptions[row], x, y+6, width, height+10, nil, "...", 2)
+	gfx.drawText(menuOptions[row], x, y+6, width, height+10, nil, gfx.kWrapClip, gfx.kAlignCenter)
 end
 
 function playdate.upButtonDown()
