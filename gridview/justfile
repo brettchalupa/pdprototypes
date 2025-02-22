@@ -1,0 +1,14 @@
+compile:
+	rm -rf gridview.pdx
+	pdc source gridview.pdx
+
+simulate: compile
+	killall -9 PlaydateSimulator -q || true
+	PlaydateSimulator gridview.pdx
+
+alias run := simulate
+
+release:
+	rm -rf gridview-release.pdx
+	pdc -s source gridview-release.pdx
+	zip -r gridview-release.pdx.zip gridview-release.pdx
