@@ -1,0 +1,14 @@
+compile:
+	rm -rf drawinrect.pdx
+	pdc source drawinrect.pdx
+
+simulate: compile
+	killall -9 PlaydateSimulator -q || true
+	PlaydateSimulator drawinrect.pdx
+
+alias run := simulate
+
+release:
+	rm -rf drawinrect-release.pdx
+	pdc -s source drawinrect-release.pdx
+	zip -r drawinrect-release.pdx.zip drawinrect-release.pdx
