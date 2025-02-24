@@ -1,0 +1,14 @@
+compile:
+	rm -rf signal_switch.pdx
+	pdc source signal_switch.pdx
+
+simulate: compile
+	killall -9 PlaydateSimulator -q || true
+	PlaydateSimulator signal_switch.pdx
+
+alias run := simulate
+
+release:
+	rm -rf signal_switch-release.pdx
+	pdc -s source signal_switch-release.pdx
+	zip -r signal_switch-release.pdx.zip signal_switch-release.pdx
