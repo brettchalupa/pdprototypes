@@ -12,7 +12,7 @@ scenes.gameplay = {}
 function scenes.gameplay.update()
 	playdate.graphics.drawText("Gameplay", 10, 10)
 	if playdate.buttonJustPressed(playdate.kButtonB) then
-		scenes.current = scenes.mainmenu
+		scenes.current = scenes.mainMenu
 	end
 end
 
